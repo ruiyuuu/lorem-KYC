@@ -321,7 +321,8 @@
                         </h5>
                         <div class="choose">
                             <div class="form-check form-check-inline">
-                                <input class="form-radio-input" name="my-form-invest-period-loss" type="radio" value="" id="exampleRadios8-A">
+                                <input class="form-radio-input" name="my-form-invest-period-loss" type="radio" value="" id="exampleRadios8-A" data-toggle="modal"
+                                data-target="#staticBackdrop-warning">
                                 <label class="form-check-label" for="exampleRadios8-A">
                                     A. 無法接受損失
                                 </label>
@@ -356,9 +357,6 @@
                                     我買進了一檔債券基金，並預計持有滿 3 年，若此基金在當天的價格報酬下跌了 12%，然加上之前所領取的配息金額，合計報酬率下跌 9%，是我可以接受的事情，即可選擇選項 B.
                                 </p>
                             </div>
-                            <p class="small waring">
-                                警語：投資型商品須自負盈虧，若您無法接受虧損風險，建議您投保傳統型商品
-                            </p>
                         </div>
                     </div>
                     <div class="question">
@@ -367,7 +365,8 @@
                         </h5>
                         <div class="choose">
                             <div class="form-check form-check-inline">
-                                <input class="form-radio-input" name="my-form-expect" type="radio" value="" id="exampleRadios9-A">
+                                <input class="form-radio-input" name="my-form-expect" type="radio" value="" id="exampleRadios9-A" data-toggle="modal"
+                                data-target="#staticBackdrop-warning">
                                 <label class="form-check-label" for="exampleRadios9-A">
                                     A. 避免資產損失
                                 </label>
@@ -384,9 +383,6 @@
                                     C. 資產短期快速成長
                                 </label>
                             </div>
-                            <p class="small waring">
-                                警語：投資型商品須自負盈虧，若您無法接受虧損風險，建議您投保傳統型商品
-                            </p>
                         </div>
                     </div>
                     <div class="question">
@@ -448,6 +444,26 @@
                                 <label class="form-check-label" for="exampleRadios11-C">
                                     C. 立即賣出
                                 </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="staticBackdrop-warning" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdrop-warning">警語</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <div class="form-field col">
+                                            <p class="text-center">投資型商品須自負盈虧，若您無法接受虧損風險，建議您投保傳統型商品</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">好</button>
+                                </div>
                             </div>
                         </div>
                     </div>
