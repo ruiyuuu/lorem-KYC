@@ -119,11 +119,8 @@
                     
                     <div class="btn-box">
                         <button type="button" class="btn btn-secondary" onclick="location.href='step4.html'">上一步</button>
-                        <!-- 彈窗提示問券一年內不能重做 -->
                         <button id="submit" name="submit" type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#staticBackdrop">下一步</button>
-                        <!-- 前往結果頁 -->
-                        <button id="submit" name="submit" type="button" class="btn btn-primary" onclick="location.href='step6.html'">下一步</button>
+                            data-target="#staticBackdrop">確認</button>
                     </div>
                 </div>
                 <div class="modal fade" id="staticBackdrop" tabindex="-1"
@@ -160,5 +157,19 @@
 
     <script src="./JS/jquery.slim.min.js"></script>
     <script src="./JS/bootstrap.bundle.js"></script>
+    <script>
+        $(document).ready(function() {
+            var clicked = false;
+            $('#submit').click(function() {
+            if (!clicked) {
+                $('#myModal').modal('show');
+                clicked = true;
+                $(this).text("下一步");
+            } else {
+                location.href = "step6.html";
+            }
+            });
+        });
+    </script>
 </body>
 </html>
