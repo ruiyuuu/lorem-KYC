@@ -1,0 +1,280 @@
+@import '_variable.scss';
+
+
+body{
+    .modal-content{
+        border: 8px solid $primary-blue ;
+        border-left:none;
+        border-bottom:none;
+        border-right:none;
+        border-radius: 0;
+        padding: 56px 72px;
+
+        .modal-header{
+            justify-content: center;
+            border-bottom: none;
+
+            h5{
+                font-style: normal;
+                font-weight: 700;
+                font-size: 40px;
+                line-height: 120%;
+                letter-spacing: 0.08em;
+                color: $dark-gray;
+            }
+        }
+
+        .modal-body{
+            .form-group{
+                display: flex;
+                gap: 16px;
+                align-items: end;
+    
+                .col{
+                    padding: 0;
+            
+                    label{
+                        position: absolute;
+                        left: 12px;
+                        top: 15px;
+                        font-size: 16px;
+                        line-height: 26px;
+                        font-weight: 400;
+                        color: $gray-03;
+                        cursor: text;
+                        text-transform: capitalize;
+                        transition: transform 0.2s ease-in-out;
+            
+                        &:hover{
+                            background:$gray-01;
+                        }
+                    }
+
+                    .input-text{
+                        display: block;
+                        width: 100%;
+                        height: 56px;
+                        border-width: 0 0 1px 0;
+                        border-color: $gray-02;
+                        font-size: 16px;
+                        line-height: 26px;
+                        font-weight: 400;
+                        background-color: $gray-01;
+                        padding-left: 12px;
+                        padding-top: 20px;
+                        border-radius: 0;
+
+                        &:not(:placeholder-shown) {
+                            border-color: $black;
+                        }
+    
+                        &:not(:placeholder-shown) +.label,.contact .input-text .not-empty + .label {
+                            transform: translateY(-10px);
+                            font-size:15px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: 150%;
+                            letter-spacing: 0.04em;
+                            color: $dark-gray;
+                        }
+        
+                        &:focus +.label,.contact .input-text .not-empty + .label{
+                            transform: translateY(-10px);
+                            font-size:15px;
+                            color:$primary-blue;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: 150%;
+                            letter-spacing: 0.04em;
+                        }
+        
+                        &:focus{
+                            outline: none;
+                            border-color: $primary-blue;
+                            &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+                                opacity: 1;
+                            }
+                        }
+    
+                        &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+                            color: $gray-03;
+                            opacity: 1; /* Firefox */
+                        }
+                            
+                        &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+                            color: $gray-03;
+                        }
+                            
+                        &::-ms-input-placeholder { /* Microsoft Edge */
+                            color: $gray-03;
+                        }
+                    }
+                }
+
+                .captcha-img{
+                    display: flex;
+                    gap: 12px;
+                    align-items: end;
+                    .link{
+                        text-decoration: none;
+                        color: $dark-gray;
+                        border-bottom: 1px solid rgba(75, 78, 83, 0);
+                        transition: all 0.1s ease-in;
+                        cursor: pointer;
+    
+                        &:hover{
+                            border-bottom: 1px solid rgba(75, 78, 83, 1);
+                        }
+                    }
+                }
+            }
+            p.error-text{
+                font-style: normal;
+                font-weight: 400;
+                font-size: 15px;
+                line-height: 150%;
+                color: $error;
+            }
+        }
+
+        .modal-footer{
+            border-top: none;
+            flex-wrap: nowrap;
+
+            .btn-secondary{
+                width: 100%;
+                height: 56px;
+                background-color: transparent;
+                color: $dark-blue;
+                font-style: normal;
+                font-weight: 700;
+                font-size: 18px;
+                line-height: 100%;
+                letter-spacing: 0.08em;
+                border: none;
+                border-radius: 0;
+                transition: all 0.2s ease-in;
+                opacity: 1;
+
+                &:hover{
+                    width: 100%;
+                    height: 56px;
+                    background-color: transparent;
+                    color: $dark-blue;
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 18px;
+                    line-height: 100%;
+                    letter-spacing: 0.08em;
+                    border: none;
+                    border-radius: 0;
+                    transition: all 0.2s ease-in;
+                    opacity: 0.85;
+                }
+            }
+
+            .btn-primary{
+                width: 100%;
+                height: 56px;
+                background-color: $secondary-pink;
+                color: $black;
+                font-style: normal;
+                font-weight: 700;
+                font-size: 18px;
+                line-height: 100%;
+                letter-spacing: 0.08em;
+                padding: 8px 40px;
+                border: none;
+                border-radius: 0;
+                transition: all 0.2s ease-in;
+                opacity: 1;
+
+                &::after{
+                    content: "";
+                    background-image: url(../image/icon_arrow_right_black.svg);
+                    background-repeat: no-repeat;
+                    display: inline-block;
+                    height: 28px;
+                    width: 40px;
+                    vertical-align: middle;
+                    margin-left: 24px;
+                }
+
+                &:hover{
+                    height: 56px;
+                    background-color: $secondary-pink;
+                    color: $black;
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 18px;
+                    line-height: 100%;
+                    letter-spacing: 0.08em;
+                    padding: 8px 40px;
+                    border: none;
+                    border-radius: 0;
+                    transition: all 0.2s ease-in;
+                    opacity: 0.85;
+                }
+
+                &:disabled{
+                    background-color: $gray-01;
+                    color: $gray-03;
+                    &::after{
+                        background-image: url(../image/icon_arrow_right_gray.svg);
+                    }
+                    &:hover{
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width:576px) {
+    .wrapper{
+        .col-12{
+            .content{
+                .modal{
+                    .modal-dialog{
+                        max-width: 748px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media (max-width:800px) {
+    body{
+        .modal-content{
+            padding: 24px 16px;
+        }
+    }
+    
+}
+@media (max-width:490px) {
+    body{
+        .modal-content{
+            .modal-header{
+                h5{
+                    font-size: 32px;
+                }
+            }
+            .modal-body{
+                .form-group{
+                    align-items: start;
+                    flex-direction: column;
+                }
+            }
+            .modal-footer{
+                .btn-primary{
+                    &::after{
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    
+}
+    

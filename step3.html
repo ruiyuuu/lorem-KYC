@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安達人壽 KYC</title>
+    <link rel="shortcut icon" href="./image/favicon.ico">
+    <link rel="bookmark" href="./image/favicon.ico">
+    <base target="_self">
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="https://life.chubb.com/tw-zh/" target="_blank">
+            <img src="./image/Logo.png" alt="logo">
+        </a>
+    </nav>
+    <div class="container-fluid wrapper p-0">
+        <div class="bg-bottom"></div>
+        <img class="w-100 title d-none d-md-flex w-100" src="./image/page-title-img.png" alt="top-bg">
+        <img class="w-100 title d-flex d-md-none d-xl-none w-100" src="./image/m-page-title-img.png" alt="top-bg">
+        <div class="container step-content">
+            <div class="col-12">
+                <img class="mx-auto step d-none d-md-flex w-100" src="./image/step3.png" alt="step3">
+                <img class="mx-auto step d-flex d-md-none d-xl-none w-100" src="./image/m-step3.png" alt="step3">
+                <div class="col-12 content">
+                    <div class="contact-form">
+                        <h3>簡訊驗證</h3>
+                        <div class="form-group">
+                            <div class="form-field col-lg-6">
+                                <input type="text" name="inputOtp" id="inputOtp" class="input-text" placeholder=" " inputmode="numeric" required>
+                                <label for="inputOtp" class="label">驗證碼</label>
+                                <span class="re-send">重新發送</span>
+                                <p class="helper-text">收到簡訊五分鐘內，請輸入驗證碼</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-box">
+                        <button type="button" class="btn btn-secondary" onclick="location.href='step2.html'">上一步</button>
+                        <button id="submit" name="submit" type="button" class="btn btn-primary" onclick="location.href='step4.html'" disabled="disabled">下一步</button>
+                    </div>
+                    <!-- DEMO START-->
+                    <div class="demo justify-content-center d-flex gap-4">
+                        <a class="mx-2" data-toggle="modal" data-target="#staticBackdrop-five-error">OTP 五次錯誤示意</a>
+                        <a class="mx-2" onclick="location.href='step6.html'">已填過表單示意</a>
+                    </div>
+                    <!-- DEMO END -->
+                    <div class="modal fade" id="staticBackdrop-five-error" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdrop-five-error">五次錯誤</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <div class="form-field col">
+                                            <p class="text-center">五次簡訊驗證碼錯誤，如需協助請撥客服專線 0800-011-709 由專人為您服務</p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">關閉</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid p-0 footer">
+        <div class="footer-content">
+            ©2023 CHUBB 本網站建議使用 IE11 以上的版本、Google Chrome、Firefox 瀏覽器輸入。
+        </div>
+    </div>
+
+
+
+
+    <script src="./JS/jquery.slim.min.js"></script>
+    <script src="./JS/bootstrap.bundle.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#inputOtp").on("input", function() {
+                if($("#inputOtp").val() === "") {
+                    $("#submit").prop("disabled", true);
+                } else {
+                    $("#submit").prop("disabled", false);
+                }
+            });
+        });
+    </script>
+    
+
+
+
+</body>
+</html>

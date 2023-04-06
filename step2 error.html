@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>安達人壽 KYC</title>
+    <link rel="shortcut icon" href="./image/favicon.ico">
+    <link rel="bookmark" href="./image/favicon.ico">
+    <base target="_self">
+    <link rel="stylesheet" href="./styles/style.css">
+    <style>
+        input[type="date"]::-webkit-calendar-picker-indicator {
+    display: block;
+    -webkit-appearance: none;
+    background-image: url(./image/icon_calender.svg);
+    margin-bottom: 24px;
+    background: none;
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="https://life.chubb.com/tw-zh/" target="_blank">
+            <img src="./image/Logo.png" alt="logo">
+        </a>
+    </nav>
+    <div class="container-fluid wrapper p-0">
+        <div class="bg-bottom"></div>
+        <img class="w-100 title d-none d-md-flex w-100" src="./image/page-title-img.png" alt="top-bg">
+        <img class="w-100 title d-flex d-md-none d-xl-none w-100" src="./image/m-page-title-img.png" alt="top-bg">
+        <div class="container step-content">
+            <div class="col-12">
+                <img class="mx-auto step d-none d-md-flex w-100" src="./image/step2.png" alt="step2">
+                <img class="mx-auto step d-flex d-md-none d-xl-none w-100" src="./image/m-step2.png" alt="step2">
+                <div class="col-12 content">
+                    <div class="contact-form">
+                        <h3>基本資料</h3>
+                        <div class="form-group">
+                            <div class="form-field col-lg-6">
+                                <input type="text" name="inputId" id="inputId" class="input-text col-lg-6 error" placeholder="A123456789" value="FF123" maxlength="10" required>
+                                <label for="inputId" class="label">身分證字號</label>
+                                <span class="error-icon"></span>
+                                <p class="error-text">請填入正確格式英文字＋9碼，例：A123456789</p>
+                            </div>
+                            <div class="form-field col-lg-6">
+                                <input type="date" name="inputBirthday" id="inputBirthday"
+                                    class="input-text input-date col-lg-6" placeholder=" " required
+                                    onfocus="this.showPicker()">
+                                <label for="birthday" class="label date-label">生日</label>
+                                <div class="date-hide-placeholder"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-field col-lg-12">
+                                <input type="text" name="inputNumber" id="inputNumber" class="input-text error" placeholder="0909123456" value="091234567A" maxlength="10" inputmode="numeric" required>
+                                <label for="inputNumber" class="label">手機號碼</label>
+                                <span class="error-icon"></span>
+                                <p class="error-text">請填入正確格式，例0909123456</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-box">
+                        <button type="button" class="btn btn-secondary" onclick="location.href='index.html'">上一步</button>
+                        <button id="submit" name="submit" type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" disabled="disabled">下一步</button>
+                    </div>
+                    <!-- DEMO START -->
+                    <div class="demo justify-content-center d-flex gap-4">
+                        <a class="mx-2" onclick="openModal()" data-target="##staticBackdrop-basic-info-five-error">基本資料五次錯誤示意</a>
+                        <a class="mx-2" onclick="location.href='step2.html'">輸入匡正常示意</a>
+                    </div>
+                    <!-- DEMO END -->
+                    <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">輸入圖形驗證碼</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <div class="form-field col">
+                                            <input type="text" name="captcha" id="captcha" class="input-text" placeholder=" " inputmode="numeric" required>
+                                            <label for="captcha" class="label">驗證碼</label>
+                                        </div>
+                                        <div class="captcha-img">
+                                            <img src="./image/verification-code.png" alt="verification code">
+                                            <div class="link">
+                                                換驗證碼
+                                                <img src="./image/icon_update.svg" alt="update">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                                    <button id="submitForModal" name="submitForModal" type="button" class="btn btn-primary" onclick="location.href='step3.html'" disabled="disabled">確認</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="staticBackdrop-basic-info-five-error" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdrop-basic-info-five-error">五次錯誤</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <div class="form-field col">
+                                            <p class="text-center">基本資料五次輸入錯誤，如需協助請撥客服專線 0800-011-709 由專人為您服務</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">關閉</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="staticBackdrop-five-error" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdrop-five-error">五次錯誤</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <div class="form-field col">
+                                            <p class="text-center">五次圖形錯誤，如需協助請撥客服專線 0800-011-709 由專人為您服務</p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">關閉</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid p-0 footer">
+        <div class="footer-content">
+            ©2023 CHUBB 本網站建議使用 IE11 以上的版本、Google Chrome、Firefox 瀏覽器輸入。
+        </div>
+    </div>
+
+
+
+
+    <script src="./JS/jquery.slim.min.js"></script>
+    <script src="./JS/bootstrap.bundle.js"></script>
+    <script>
+        $(function () {
+        var inputId = $('#inputId');
+        var inputBirthday = $('#inputBirthday');
+        var inputNumber = $('#inputNumber');
+        var button = $('#submit');
+
+        inputId.on('input', checkInputs)
+
+        inputBirthday.change(function () {
+                if ($(this).val()) {
+                    $(this).siblings('.date-hide-placeholder').addClass('d-none')
+                    $(this).siblings('.label').removeClass('date-label')
+                } else {
+                    $(this).siblings('.date-hide-placeholder').removeClass('d-none')
+                    $(this).siblings('.label').addClass('date-label')
+                }
+                checkInputs();
+            });
+            inputNumber.on('input', checkInputs)
+        // inputNumber.input(function () {
+        //     checkInputs();
+        // });
+
+        function checkInputs() {
+            console.log('dd')
+            if (inputId.val() === '' || inputBirthday.val() === '' || inputNumber.val() === '') {
+                $("#submit").prop('disabled', true);
+            } else {
+                $("#submit").prop('disabled', false);
+            }
+        }
+        }); 
+    
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#captcha").on("input", function() {
+                if($("#captcha").val() === "") {
+                    $("#submitForModal").prop("disabled", true);
+                } else {
+                    $("#submitForModal").prop("disabled", false);
+                }
+            });
+        });
+    </script>
+    <script>
+        // 身分證字隱碼
+        $('#inputId').on('input', function () {
+            if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);
+
+            const value = $(this).val();
+            const valueArr = [...value];
+            for (let i = 6; i < valueArr.length; i++) {
+                valueArr[i] = '*'
+            }
+            const newValue = valueArr.join('');
+            $(this).val(newValue);
+        })
+
+        //手機隱碼
+        $('#inputNumber').on('input', function () {
+            if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);
+
+            const value = $(this).val();
+            const valueArr = [...value];
+            for (let i = 4; i < valueArr.length; i++) {
+                if (i <= 7) {
+                    valueArr[i] = '*'
+                }
+            }
+            const newValue = valueArr.join('');
+            $(this).val(newValue);
+        })
+        
+        
+        if ($('#inputBirthday').val()) {
+            $('.date-hide-placeholder').addClass('d-none')
+            $('.date-label').removeClass('date-label')
+        }
+
+
+        $('#modal1').on('hidden.bs.modal', function (e) {
+        $('#modal2').modal('show');
+        })
+
+        function openModal() {
+        $('#staticBackdrop-basic-info-five-error').modal('show');
+        }
+    </script>
+
+    
+</body>
+</html>

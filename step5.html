@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安達人壽 KYC</title>
+    <link rel="shortcut icon" href="./image/favicon.ico">
+    <link rel="bookmark" href="./image/favicon.ico">
+    <base target="_self">
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="https://life.chubb.com/tw-zh/" target="_blank">
+            <img src="./image/Logo.png" alt="logo">
+        </a>
+    </nav>
+    <div class="container-fluid wrapper p-0">
+        <div class="bg-bottom"></div>
+        <img class="w-100 title d-none d-md-flex w-100" src="./image/page-title-img.png" alt="top-bg">
+        <img class="w-100 title d-flex d-md-none d-xl-none w-100" src="./image/m-page-title-img.png" alt="top-bg">
+        <div class="container step-content">
+            <div class="col-12">
+                <img class="mx-auto step d-none d-md-flex w-100" src="./image/step5.png" alt="step5">
+                <img class="mx-auto step d-flex d-md-none d-xl-none w-100" src="./image/m-step5.png" alt="step5">
+                <div class="col-12 content">
+                    <div class="question">
+                        <h5>
+                            1.曾經使用過之投資理財工具種類:
+                        </h5>
+                        <p>
+                            新興市場債、非投資等級債
+                        </p>
+                        <p>
+                            其他類型基金 (排除 B 以外的基金，例如‥股票型基金) 或投資型保單類連結其他類型投資標的 (排除 B 以外之投資標的類型)
+                        </p>
+                    </div>
+                    <div class="question">
+                        <h5>
+                            2.投資與債券類型相關商品之理財工具經驗:
+                        </h5>
+                        <p>
+                            1年(含) - 3年
+                        </p>
+                    </div>
+                    <div class="question">
+                        <h5>
+                            3.投資與其他類型相關商品之理財工具經驗:
+                        </h5>
+                        <p>
+                            3年(含)- 5年
+                        </p>
+                    </div>
+                    <div class="question">
+                        <h5>
+                            4.下列何者最符合您對投資理財工具的理解:
+                        </h5>
+                        <p>
+                            瞭解基本知識，並明白分散投資及資產配置的重要性，並作出分散投資
+                        </p>
+                    </div>
+                    <div class="question">
+                        <h5>
+                            5.每年可用於購買投資理財工具之金額 (新台幣)
+                        </h5>
+                        <p>
+                            50 萬以上 ~ 未滿 100 萬
+                        </p>
+                    </div>
+                    <div class="question">
+                        <h5>
+                            6.請問您的現金及存款相當於您幾年的生活開銷:
+                        </h5>
+                        <p>
+                            1 年以下
+                        </p>
+                    </div>
+                    <div class="question">
+                        <h5>
+                            7.請問您購買投資型保單連結投資標的 (含匯率風險)，每年可承受的價格損失:
+                        </h5>
+                        <p>
+                            -10%-20%
+                        </p>
+                    </div>
+                    <div class="question">
+                        <h5>
+                            8.請問您購買投資型保單所連結投資標的 (含匯率風險)， 在達到預計投資期間時 (例如 3 年、5 年)，可承受的價格損失(含配息金額):
+                        </h5>
+                        <p>
+                            -10% 以內
+                        </p>
+                    </div>
+                    <div class="question">
+                        <h5>
+                            9.您的投資回報期望:
+                        </h5>
+                        <p>
+                            資產逐年穩定成長
+                        </p>
+                    </div>
+                    <div class="question">
+                        <h5>
+                            10.就長期投資而言，您期望每年平均投資報酬率:
+                        </h5>
+                        <p>
+                            5%(含)-10%
+                        </p>
+                    </div>
+                    <div class="question">
+                        <h5>
+                            11.當投資發生虧損或達到停損點時會採取的處理方式:
+                        </h5>
+                        <p>
+                            加碼攤平
+                        </p>
+                    </div>
+                    
+                    <div class="btn-box">
+                        <button type="button" class="btn btn-secondary" onclick="location.href='step4.html'">上一步</button>
+                        <button id="submit" name="submit" type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#staticBackdrop">下一步</button>
+                    </div>
+                </div>
+                <div class="modal fade" id="staticBackdrop" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdrop-basic-info-five-error">注意</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <div class="form-field col">
+                                            <p class="text-center">風險屬性問卷一年內不得重做，請謹慎瀏覽所選之選項，若要更改所選之項目，請按上一步到問項填寫畫面做更改，謝謝。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">關閉</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid p-0 footer">
+        <div class="footer-content">
+            ©2023 CHUBB 本網站建議使用 IE11 以上的版本、Google Chrome、Firefox 瀏覽器輸入。
+        </div>
+    </div>
+
+
+
+
+    <script src="./JS/jquery.slim.min.js"></script>
+    <script src="./JS/bootstrap.bundle.js"></script>
+</body>
+</html>

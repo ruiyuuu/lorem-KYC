@@ -1,0 +1,258 @@
+@import '_variable.scss';
+
+
+body{
+
+    .contact-form{
+
+        h3{
+            font-style: normal;
+            font-weight: 500;
+            font-size: 24px;
+            line-height: 120%;
+            letter-spacing: 0.02em;
+            color: $black;
+            margin-bottom: 24px;
+        }
+
+        .form-group{
+            display: flex;
+            gap: 16px;
+
+            .col-lg-6, .col-lg-12{
+                padding: 0;
+        
+                label{
+                    position: absolute;
+                    left: 12px;
+                    top: 15px;
+                    font-size: 16px;
+                    line-height: 26px;
+                    font-weight: 400;
+                    color: $gray-03;
+                    cursor: text;
+                    text-transform: capitalize;
+                    transition: transform 0.2s ease-in-out;
+        
+                    &:hover{
+                        background:$gray-01;
+                    }
+        
+                    
+                }
+                .input-text{
+                    display: block;
+                    width: 100%;
+                    height: 56px;
+                    border-width: 0 0 1px 0;
+                    border-color: $gray-02;
+                    font-size: 16px;
+                    line-height: 26px;
+                    font-weight: 400;
+                    background-color: $gray-01;
+                    padding: 20px 12px 0 12px;
+                    border-radius: 0;
+                    appearance: none;
+                    // -webkit-appearance: none;
+                    -moz-appearance: textfield;
+                    color: $black;
+                    overflow: hidden;
+
+                    &:not(:placeholder-shown) {
+                        border-color: $black;
+                    }
+
+                    &:not(:placeholder-shown) +.label,.contact .input-text .not-empty + .label {
+                        transform: translateY(-10px);
+                        font-size:15px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 150%;
+                        letter-spacing: 0.04em;
+                        color: $dark-gray;
+                    }
+
+                    &:focus +.label,.contact .input-text .not-empty + .label{
+                        transform: translateY(-10px);
+                        font-size:15px;
+                        color:$primary-blue;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 150%;
+                        letter-spacing: 0.04em;
+                    }
+    
+                    &:focus{
+                        outline: none;
+                        border-color: $primary-blue;
+                        &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+                            opacity: 1;
+                        }
+                    }
+
+                    &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+                        color: $gray-03;
+                        opacity: 0; /* Firefox */
+                    }
+                      
+                    &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+                        color: $gray-03;
+                    }
+                      
+                    &::-ms-input-placeholder { /* Microsoft Edge */
+                        color: $gray-03;
+                    }
+                }
+                input::-webkit-date-and-time-value {
+                    text-align: left;
+                    padding: 4px 0 0 0;
+                }
+
+                .date-hide-placeholder {
+                    position: absolute;
+                    width: 100%;
+                    height: 56px;
+                    left: 0;
+                    top: 0;
+                    background-color: $gray-01;
+                    pointer-events: none;
+                    border-bottom: 1px solid $gray-02;
+                }
+
+                .input-text.input-date {
+                    border-color: $black;
+                    & + .date-label {
+                        transform: translateY(5px);
+                        color: $gray-03;
+                        z-index: 1;
+                    }
+                    &:focus {
+                        border-color: $primary-blue;
+                        height: 55px;
+                        & + .date-label {
+                            transform: translateY(-10px);
+                            color: $primary-blue;
+                        }
+                    }
+                }
+                
+                .error{
+                    
+                    &:not(:placeholder-shown){
+                        border-color: $error;
+                    }
+
+                    &:not(:placeholder-shown) +.label,.contact .input-text .not-empty + .label {
+                        transform: translateY(-10px);
+                        font-size:15px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 150%;
+                        letter-spacing: 0.04em;
+                        color: $error;
+                    }
+                }
+                .calendar-icon{
+                    width: 16px;
+                    height: 16px;
+                    display: inline-block;
+                    position: absolute;
+                    top: 21px;
+                    right:14px;
+                    pointer-events: none;
+                    background-image: url(../image/icon_calender.svg);
+                }
+                .error-icon{
+                    width: 16px;
+                    height: 16px;
+                    display: inline-block;
+                    position: absolute;
+                    top: 18.5px;
+                    right:12px;
+                    background-image: url(../image/icon_error.svg);
+                }
+                p.error-text{
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 15px;
+                    line-height: 150%;
+                    color: $error;
+                }
+                p.helper-text{
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 15px;
+                    line-height: 150%;
+                    color: $dark-gray;
+                }
+                .re-send{
+                    display: inline-block;
+                    position: absolute;
+                    top: 18.5px;
+                    right:12px;
+                    cursor: pointer;
+                    color: $dark-blue;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 150%;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+
+        h3.complete{
+            line-height: 56px;
+            text-align: center;
+            margin-top: 180px;
+            margin-bottom: 64px;
+        }
+        .form-info{
+            gap: 48px;
+            p.title,p.info{
+                width: 148px;
+                color: $black;
+                margin-bottom: 8px;
+            }
+        }
+    }
+
+    @media (min-width:992px) {
+        .col-lg-6{
+            max-width: 100%;
+            flex: auto;
+        }
+    }
+    @media (max-width:992px) {
+        .contact-form{
+            h3.complete{
+                margin-top: 48px;
+                margin-bottom: 56px;
+                line-height: 28px;
+                font-size: 20px;
+            }
+        }
+    }
+    @media (max-width:490px){
+        .contact-form{
+            .form-group{
+                flex-direction: column;
+            }
+        }
+    }
+}
+@media (max-width: 640px) {
+    .THIS input[type="date"]:before {
+        content: url(../image/icon_calender.svg) !important;
+    }
+
+    .THIS input[type="date"]:focus:before {
+        content: '' !important;
+    }
+
+    .THIS input[type="date"] {
+        display: flex;
+    }
+}

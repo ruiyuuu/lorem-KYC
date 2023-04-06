@@ -1,0 +1,137 @@
+@import '_variable.scss';
+
+
+
+body{
+    .wrapper{
+        .step-content{
+            .question{
+
+                h5{
+                    margin-bottom:16px;
+                    color: $black;
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 120%;
+                    letter-spacing: 0.08em;
+                }
+                .choose{
+
+                    .form-check{
+                        text-align: start;
+                        padding-left: 0;
+                        margin-bottom: 32px;
+                        &:last-child{
+                            margin-bottom: 0;
+                        }
+        
+                        .form-check-input{
+                            min-width: 16px;
+                            width: 16px;
+                            height: 16px;
+                            background-color: $white;
+                            border-radius: 0;
+                            vertical-align: middle;
+                            border: 1px solid $gray-02;
+                            appearance: none;
+                            outline: none;
+                            cursor: pointer;
+                            margin: 4px;
+                            position: unset;
+        
+                            &:checked {
+                                background-color: $dark-blue;
+                                background-image: url(../image/checked.svg);
+                                border: transparent;
+                            }
+                        }
+
+                        .form-check-label{
+                            margin-left: 2px;
+                            color: $dark-gray;
+                        }
+
+                        .form-radio-input{
+                            min-width: 16px;
+                            width: 16px;
+                            height: 16px;
+                            background-color: $white;
+                            border-radius: 50%;
+                            vertical-align: middle;
+                            border: 1px solid $gray-02;
+                            appearance: none;
+                            outline: none;
+                            cursor: pointer;
+                            margin: 4px;
+    
+                            &:checked {
+                                border: 6px solid $dark-blue;
+                            }
+    
+                            .form-check-label{
+                                margin-left: 4px;
+                                color: $dark-gray;
+                            }
+                        }
+                    }
+
+                    .form-check-inline{
+                        margin-right: 32px;
+                    }
+                    .form-check.form-check-inline{
+                        margin-bottom: 0px;
+                    }
+                }
+
+                .example{
+                    
+                    align-items: start;
+                    margin-top: 16px;
+
+                    img.example-icon{
+                        margin-top:3px;
+                    }
+
+                    p.example-text{
+                        margin-bottom:0px;
+                        color:$dark-blue;
+                        margin-left: 4px;
+                    }
+                }
+
+                p.small.waring{
+                    background-color: $gray-01;
+                    padding:0 24px 1px 24px;
+                    border-radius: 12px;
+                    margin-top: 16px;
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:490px) {
+    body{
+        .wrapper{
+            .step-content{
+                .question{
+                    .choose{
+                        display: flex;
+                        flex-direction: column;
+                        .form-check.form-check-inline{
+                            margin-bottom: 16px;
+                        }
+                        .form-check{
+                            margin-bottom: 16px;
+                        }
+                        .example{
+                            margin-top: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
