@@ -9537,6 +9537,10 @@ body .wrapper .step-content .question .choose .form-check .form-check-input:chec
   background-image: url(../image/checked.svg);
   border: transparent;
 }
+body .wrapper .step-content .question .choose .form-check .form-check-input.error {
+  border: 1px solid #E41913;
+  background-color: rgba(228, 25, 19, 0.1);
+}
 body .wrapper .step-content .question .choose .form-check .form-check-label {
   margin-left: 2px;
   color: #4B4E53;
@@ -9563,6 +9567,10 @@ body .wrapper .step-content .question .choose .form-check .form-radio-input .for
   margin-left: 4px;
   color: #4B4E53;
 }
+body .wrapper .step-content .question .choose .form-check .form-radio-input.error {
+  border: 1px solid #E41913;
+  background-color: rgba(228, 25, 19, 0.1);
+}
 body .wrapper .step-content .question .choose .form-check-inline {
   margin-right: 32px;
 }
@@ -9580,6 +9588,10 @@ body .wrapper .step-content .question .example p.example-text {
   margin-bottom: 0px;
   color: #150F96;
   margin-left: 4px;
+}
+body .wrapper .step-content .question .error p {
+  margin-top: 16px;
+  color: #E41913;
 }
 body .wrapper .step-content .question p.small.waring {
   background-color: #F4F4F4;
