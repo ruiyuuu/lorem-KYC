@@ -9888,6 +9888,10 @@ body .modal-content .modal-footer .btn-primary:disabled:hover {
   font-family: -apple-system, BlinkMacSystemFont, Arial, "Noto San TC", PingFang SC, "Segoe UI", "Microsoft JhengHei", "Noto Sans", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body .navbar {
   height: 72px;
 }
