@@ -22,6 +22,9 @@ body{
                 letter-spacing: 0.08em;
                 color: $dark-gray;
             }
+            h5.warning{
+                color: $error;
+            }
         }
 
         .modal-body{
@@ -108,6 +111,10 @@ body{
                         &::-ms-input-placeholder { /* Microsoft Edge */
                             color: $gray-03;
                         }
+                    }
+                    p.warning{
+                        color: $error;
+                        font-weight: 500;
                     }
                 }
 
