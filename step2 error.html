@@ -10,6 +10,16 @@
     <link rel="bookmark" href="./image/favicon.ico">
     <base target="_self">
     <link rel="stylesheet" href="./styles/style.css">
+    <script src="./acelifevul/js/jquery.min.js"></script>
+    <script src="./acelifevul/js/jquery.easyui.min.js"></script>
+    <script src="./acelifevul/js/jquery-easyui/locale/easyui-lang-zh_TW.js"></script>
+    <script src="./acelifevul/premiumAuth/bootstrap/js/moment-with-locales.min.js"></script>
+    <script src="./JS/jquery.slim.min.js"></script>
+    <link rel="stylesheet" href="./acelifevul/premiumAuth/bootstrap/css/bootstrap-datetimepicker4.17.47.min.css">
+    <link rel="stylesheet" href="./acelifevul/premiumAuth/bootstrap/css/bootstrap-datetimepicker4.17.47.min.css">
+    <script src="./acelifevul/premiumAuth/bootstrap/js/bootstrap-datetimepicker4.17.47.min.js"></script>
+
+
     <style>
         input[type="date"]::-webkit-calendar-picker-indicator {
     display: block;
@@ -19,6 +29,235 @@
     background: none;
 }
     </style>
+    <script type="text/javascript">
+        
+
+        console.log($)
+      
+      
+      function search() {
+          
+          var id = $('#id').val();
+          var birth = $('#birth').val();
+          var j_captcha_response = $('input.j_captcha_response').val();
+      
+          if (id.length==0) {
+              $('#id').focus();
+              showResult('errorCondition');
+              return;
+          }
+          if (birth.length==0 || !dateValidation(birth)) {
+              $('#birth').focus();
+              showResult('errorCondition');
+              return;
+          }
+          if (j_captcha_response.length==0) {
+              $('input.j_captcha_response').focus();
+              showResult('errorCondition');
+              return;
+          }
+      
+          $.ajax({
+              type : 'POST',
+              url : '/acelifevul/cservice/onechubbQuery.action',
+              dataType: 'json',
+              data:{id:id,birth:birth,j_captcha_response:j_captcha_response},   
+              cache:false,
+              success : function(data) {
+                  showResult(data.resultId);
+              },
+              beforeSend: function() {
+                  $.messager.progress({
+                      title: '提示訊息',
+                      msg: '資料查詢中，請稍候！'
+                  });
+              },
+              complete: function() {
+                  $.messager.progress('close'); 
+              },
+              error: function(xhr) {
+                  alert('發生錯誤：' + xhr.responseText);
+                  $.messager.progress('close'); 
+              }
+          });
+      };
+      
+      
+      function clearForm() {
+          document.location.reload();
+      }
+      
+      
+      
+      function blurBirth() {
+          
+          var birth = $('#birth').val();
+          var tempBirth;
+          
+          var re1 = new RegExp('^([0-9]{8})$');
+          var re2 = new RegExp('^([0-9]{6})$');
+          var re3 = new RegExp('^([0-9]{7})$');
+          var re4 = new RegExp('^([0-9]{4})[.-]{1}([0-9]{1,2})[.-]{1}([0-9]{1,2})$');
+          var re5 = new RegExp('^([0-9]{4})[./]{1}([0-9]{1,2})[./]{1}([0-9]{1,2})$');
+          
+          if (re1.exec(birth)) {
+              tempBirth = birth.substring(0,4) + '/' + birth.substring(4,6) + '/' + birth.substring(6,8);
+          } else if (re2.exec(birth)) {
+              tempBirth = birth.substring(0,4) + '/' + birth.substring(4,5) + '/' + birth.substring(5,6);
+          } else if (re3.exec(birth)) {
+              var month = birth.substring(4,5);
+              var day = birth.substring(5,7);
+              if (parseInt(day) > 0 && parseInt(day) < 32) {
+                  tempBirth = birth.substring(0,4) + '/' + month + '/' + day;
+              }
+              
+              var month2 = birth.substring(4,6);
+              var day2 = birth.substring(6,7);
+              if (parseInt(month2) > 0 && parseInt(month2) < 13) {
+                  tempBirth = birth.substring(0,4) + '/' + month2 + '/' + day2;
+              }
+          } else if (re4.exec(birth)) {
+              tempBirth = birth.replaceAll('-', '/');
+          } else if (re5.exec(birth)) {
+              tempBirth = birth;
+          }
+          
+          if ((dateDataValue = re5.exec(tempBirth)) != null) {
+              var month = parseFloat(dateDataValue[2]);
+              var day = parseFloat(dateDataValue[3]);
+              
+              if (month < 10 && day < 10) {
+                  tempBirth = birth.substring(0,4) + '/0' + month + '/0' + day;
+              } else if (month < 10) {
+                  tempBirth = birth.substring(0,4) + '/0' + month + '/' + day;
+              } else if (day < 10) {
+                  tempBirth = birth.substring(0,4) + '/' + month + '/0' + day;
+              }
+              $('#birth').val(tempBirth);
+          }
+      }
+      
+      
+      function dateValidation(date) {
+          var re = new RegExp('^([0-9]{4})[./]{1}([0-9]{1,2})[./]{1}([0-9]{1,2})$');
+          var dateDataValue;
+          var infoValidation = true;
+          if ((dateDataValue = re.exec(date)) != null) {
+              let i;
+              i = parseFloat(dateDataValue[1]);
+              if (i <= 0 || i > 9999) {
+                  infoValidation = false;
+              }
+              i = parseFloat(dateDataValue[2]);
+              if (i <= 0 || i > 12) {
+                  infoValidation = false;
+              }
+              i = parseFloat(dateDataValue[3]);
+              if (i <= 0 || i > 31) {
+                  infoValidation = false;
+              }
+          } else {
+              infoValidation = false;
+          }
+          return infoValidation;
+      }
+      
+      
+      function showResult(resultId) {
+          
+          $('#result-list').parent().removeClass('d-none');
+          $('#result-list').children().addClass('d-none');
+      
+          document.getElementById(resultId).classList.remove('d-none');
+      
+      }
+      
+      
+      const weekDayArr = 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_')
+      let datetimepickerSetting = {
+          inline: true,
+          locale: 'zh-tw',
+          format: 'll',
+          useCurrent: false,
+          icons: {
+              previous: "fa fa-chevron-left",
+              next: "fa fa-chevron-right"
+          }
+      }
+      
+      function setBirth(){
+          let birthdayStr = $('#datepicker').val()
+          let birthday = ''
+          birthdayStr.split('').forEach(function(item, index){
+              if(isNaN(item)){
+                  if(index < birthdayStr.length - 1){
+                      birthday += '-'
+                  }
+              } else {
+                  birthday += item
+              }
+          })
+          birthday = new Date(birthday)
+          let val = dateFormate(birthday)
+          $('.has-calendar').parent().addClass('hasVal')
+          $('.has-calendar').parent().find('input').val(val)
+          $('#calendar').modal('hide')
+      }
+      
+      function dateFormate(date){
+          let result = ''
+          let d = date.getDate()
+          if(d < 10){
+              d = '0' + d
+          }
+          let m = date.getMonth() + 1
+          if(m < 10){
+              m = '0' + m
+          }
+          let y = date.getFullYear()
+          result = y + '/' + m + '/' + d
+          return result
+      }
+      
+      $(function(){
+          $('input[type="text"]').change(function(){
+              let inputParent = $(this).parent('.c-input-group')
+              let val = $(this).val()
+              if(inputParent.length > 0){
+                  if(val != ""){
+                      inputParent.addClass('hasVal')
+                  } else {
+                      inputParent.removeClass('hasVal')
+                  }
+              }
+          })
+          $('.has-calendar').click(function(){
+              let inputVal = $('.has-calendar').parent().find('input').val()
+              let defaultDate = new Date()
+              if(inputVal != ''){
+                  let date = new Date(inputVal)
+                  if(date != 'Invalid Date'){
+                      defaultDate = date
+                  }
+              }
+              datetimepickerSetting.defaultDate = defaultDate
+              $('#datepicker').datetimepicker('destroy');
+              $('#datepicker').datetimepicker(datetimepickerSetting)     
+              let text = $('#datepicker').val().split(',')[0]
+              $('#calendarTitle').html(text)
+              $('#calendar').modal('show')
+          })
+          moment.locale('en',{
+              weekdaysMin: 'S_M_T_W_T_F_S'.split('_'), 
+          })
+          $('#datepicker').datetimepicker(datetimepickerSetting)
+          $('#datepicker').on('dp.change',function(e){
+              let text = $('#datepicker').val()
+              $('#calendarTitle').html(text)
+          });
+      })
+      
+      </script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg">
@@ -45,11 +284,12 @@
                                 <p class="error-text">請填入正確格式英文字＋9碼，例：A123456789</p>
                             </div>
                             <div class="form-field col-lg-6">
-                                <input type="date" name="inputBirthday" id="inputBirthday"
-                                    class="input-text input-date col-lg-6" placeholder=" " required
-                                    onfocus="this.showPicker()">
+                                <input type="text" name="inputBirthday" id="inputBirthday"
+                                    class="input-text col-lg-6" placeholder="請輸入出生日期 yyyy/mm/dd" required
+                                    onfocus="this.showPicker()" maxlength="10">
                                 <label for="birthday" class="label date-label">生日</label>
-                                <div class="date-hide-placeholder"></div>
+                                <span class="has-calendar"></span>
+                                <!-- <div class="date-hide-placeholder"></div> -->
                             </div>
                         </div>
                         <div class="form-group">
@@ -138,6 +378,29 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Datetimepicker Modal -->
+                    <div class="modal calendar fade" id="calendar" tabindex="-1" role="dialog" aria-labelledby="calendar" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="col-10">
+                                        <div class="subCalendarTitle">請選擇日期</div>
+                                        <h4 class="modal-title" id="calendarTitle"></h4>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" id="datepicker">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-block btn-flat btn-outline-secondary" data-dismiss="modal">關閉</button>
+                                    <button type="button" class="btn btn-block btn-flat btn-yellow" onclick="setBirth()">確認</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -151,7 +414,6 @@
 
 
 
-    <script src="./JS/jquery.slim.min.js"></script>
     <script src="./JS/bootstrap.bundle.js"></script>
     <script>
         $(function () {
@@ -162,20 +424,26 @@
 
         inputId.on('input', checkInputs)
 
-        inputBirthday.change(function () {
-                if ($(this).val()) {
-                    $(this).siblings('.date-hide-placeholder').addClass('d-none')
-                    $(this).siblings('.label').removeClass('date-label')
-                } else {
-                    $(this).siblings('.date-hide-placeholder').removeClass('d-none')
-                    $(this).siblings('.label').addClass('date-label')
-                }
-                checkInputs();
-            });
-            inputNumber.on('input', checkInputs)
-        // inputNumber.input(function () {
-        //     checkInputs();
-        // });
+        // inputBirthday.change(function () {
+        //         if ($(this).val()) {
+        //             $(this).siblings('.date-hide-placeholder').addClass('d-none')
+        //             $(this).siblings('.label').removeClass('date-label')
+        //         } else {
+        //             $(this).siblings('.date-hide-placeholder').removeClass('d-none')
+        //             $(this).siblings('.label').addClass('date-label')
+        //         }
+        //         checkInputs();
+        //     });
+
+        // 日期欄位是否為空
+        $("#inputBirthday").on("input", function () {
+            if ($("#inputBirthday").val() === "") {
+                $("#submit").prop("disabled", true);
+            } else {
+                $("#submit").prop("disabled", false);
+            }
+        });
+
 
         function checkInputs() {
             console.log('dd')

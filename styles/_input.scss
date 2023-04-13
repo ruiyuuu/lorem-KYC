@@ -152,14 +152,13 @@ body{
                         color: $error;
                     }
                 }
-                .calendar-icon{
+                .has-calendar{
                     width: 16px;
                     height: 16px;
                     display: inline-block;
                     position: absolute;
                     top: 21px;
                     right:14px;
-                    pointer-events: none;
                     background-image: url(../image/icon_calender.svg);
                 }
                 .error-icon{
