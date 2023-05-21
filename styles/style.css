@@ -5670,7 +5670,8 @@ a.close.disabled {
   float: left;
   width: 100%;
   margin-right: -100%;
-  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
   transition: transform 0.6s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -9400,13 +9401,14 @@ body .contact-form .form-group .col-lg-6 .error:not(:placeholder-shown) + .label
   letter-spacing: 0.04em;
   color: #E41913;
 }
-body .contact-form .form-group .col-lg-6 .has-calendar, body .contact-form .form-group .col-lg-12 .has-calendar {
+body .contact-form .form-group .col-lg-6 .calendar-icon, body .contact-form .form-group .col-lg-12 .calendar-icon {
   width: 16px;
   height: 16px;
   display: inline-block;
   position: absolute;
   top: 21px;
   right: 14px;
+  pointer-events: none;
   background-image: url(../image/icon_calender.svg);
 }
 body .contact-form .form-group .col-lg-6 .error-icon, body .contact-form .form-group .col-lg-12 .error-icon {
@@ -9451,15 +9453,7 @@ body .contact-form h3.complete {
   line-height: 56px;
   text-align: center;
   margin-top: 180px;
-  margin-bottom: 64px;
-}
-body .contact-form .form-info {
-  gap: 48px;
-}
-body .contact-form .form-info p.title, body .contact-form .form-info p.info {
-  width: 148px;
-  color: #000;
-  margin-bottom: 8px;
+  margin-bottom: 268px;
 }
 @media (min-width: 992px) {
   body .col-lg-6 {
@@ -9535,10 +9529,6 @@ body .wrapper .step-content .question .choose .form-check .form-check-input:chec
   background-image: url(../image/checked.svg);
   border: transparent;
 }
-body .wrapper .step-content .question .choose .form-check .form-check-input.error {
-  border: 1px solid #E41913;
-  background-color: rgba(228, 25, 19, 0.1);
-}
 body .wrapper .step-content .question .choose .form-check .form-check-label {
   margin-left: 2px;
   color: #4B4E53;
@@ -9565,10 +9555,6 @@ body .wrapper .step-content .question .choose .form-check .form-radio-input .for
   margin-left: 4px;
   color: #4B4E53;
 }
-body .wrapper .step-content .question .choose .form-check .form-radio-input.error {
-  border: 1px solid #E41913;
-  background-color: rgba(228, 25, 19, 0.1);
-}
 body .wrapper .step-content .question .choose .form-check-inline {
   margin-right: 32px;
 }
@@ -9586,10 +9572,6 @@ body .wrapper .step-content .question .example p.example-text {
   margin-bottom: 0px;
   color: #150F96;
   margin-left: 4px;
-}
-body .wrapper .step-content .question .error p {
-  margin-top: 16px;
-  color: #E41913;
 }
 body .wrapper .step-content .question p.small.waring {
   background-color: #F4F4F4;
@@ -9614,97 +9596,6 @@ body .wrapper .step-content .question p.small.waring {
     margin-top: 0;
   }
 }
-.bootstrap-datetimepicker-widget {
-  display: flex;
-  justify-content: center;
-}
-
-.bootstrap-datetimepicker-widget .datepicker .active {
-  background-color: #ffb617;
-  color: #111;
-}
-
-.bootstrap-datetimepicker-widget .datepicker .active:hover {
-  background-color: #ffb617;
-}
-
-.bootstrap-datetimepicker-widget .datepicker table {
-  height: 400px;
-  width: 360px;
-}
-
-@media screen and (max-width: 374.98px) {
-  .bootstrap-datetimepicker-widget .datepicker table {
-    width: calc(100vw - 15px);
-  }
-}
-.bootstrap-datetimepicker-widget .datepicker table thead th.dow {
-  padding: 20px 5px;
-  color: #a9a9a9;
-}
-
-.bootstrap-datetimepicker-widget .datepicker table td {
-  border: 5px solid transparent;
-  border-radius: 0;
-  overflow: hidden;
-}
-
-.bootstrap-datetimepicker-widget .datepicker table td.today::before {
-  border: 2px solid #ffb617;
-  height: calc(100% - 4px);
-  width: calc(100% - 4px);
-  top: 2px;
-  left: 2px;
-}
-
-.bootstrap-datetimepicker-widget .datepicker table td.today.active::before {
-  border-color: white;
-}
-
-/* body .modal.calendar .modal-dialog {
-max-width: 380px;
-} */
-.modal-dialog.calendar {
-  max-width: 380px;
-}
-
-body .modal.calendar .modal-dialog .modal-header {
-  background-color: #ffb617;
-}
-
-body .modal.calendar .modal-dialog .modal-header .subCalendarTitle {
-  padding-bottom: 1rem;
-}
-
-body .modal.calendar .modal-dialog .modal-header .close {
-  color: white;
-}
-
-.modal-content.calendar {
-  padding: 0;
-  border: none;
-  border-radius: 0;
-}
-
-body .modal.calendar .modal-dialog .modal-header {
-  background-color: #ffb617;
-}
-
-body .modal-content .modal-header {
-  justify-content: center;
-  border-bottom: none;
-}
-
-.modal-header {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-@media (min-width: 576px) {
-  .modal-dialog.calendar {
-    max-width: 380px;
-  }
-}
 body .modal-content {
   border: 8px solid #01C1D6;
   border-left: none;
@@ -9724,9 +9615,6 @@ body .modal-content .modal-header h5 {
   line-height: 120%;
   letter-spacing: 0.08em;
   color: #4B4E53;
-}
-body .modal-content .modal-header h5.warning {
-  color: #E41913;
 }
 body .modal-content .modal-body .form-group {
   display: flex;
@@ -9821,10 +9709,6 @@ body .modal-content .modal-body .form-group .col .input-text:-ms-input-placehold
 }
 body .modal-content .modal-body .form-group .col .input-text::-ms-input-placeholder { /* Microsoft Edge */
   color: #AFAFAF;
-}
-body .modal-content .modal-body .form-group .col p.warning {
-  color: #E41913;
-  font-weight: 500;
 }
 body .modal-content .modal-body .form-group .captcha-img {
   display: flex;
@@ -9981,11 +9865,7 @@ body .modal-content .modal-footer .btn-primary:disabled:hover {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, Arial, PingFang SC, "Segoe UI", "Microsoft JhengHei", "Noto Sans", sans-serif;
-}
-
-html {
-  scroll-behavior: smooth;
+  font-family: -apple-system, BlinkMacSystemFont, Arial, "Noto San TC", PingFang SC, "Segoe UI", "Microsoft JhengHei", "Noto Sans", sans-serif;
 }
 
 body .navbar {

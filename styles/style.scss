@@ -2,7 +2,6 @@
 @import '_input.scss';
 @import '_grid.scss';
 @import '_checkbox radiobtn.scss';
-@import '_calendar.scss';
 @import '_modal.scss';
 @import '_variable.scss';
 
@@ -40,11 +39,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "Noto Sans TC" ,-apple-system, BlinkMacSystemFont, Arial, PingFang SC,"Segoe UI", "Microsoft JhengHei", "Noto Sans", sans-serif;
-}
-
-html{
-    scroll-behavior: smooth;
+    font-family: -apple-system, BlinkMacSystemFont, Arial,"Noto San TC" , PingFang SC,"Segoe UI", "Microsoft JhengHei", "Noto Sans", sans-serif;
 }
 
 body{

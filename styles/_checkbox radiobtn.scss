@@ -47,11 +47,6 @@ body{
                             }
                         }
 
-                        .form-check-input.error{
-                            border: 1px solid $error;
-                            background-color: rgba(228, 25, 19, 0.1);
-                        }
-
                         .form-check-label{
                             margin-left: 2px;
                             color: $dark-gray;
@@ -79,10 +74,6 @@ body{
                                 color: $dark-gray;
                             }
                         }
-                        .form-radio-input.error{
-                            border: 1px solid $error;
-                            background-color: rgba(228, 25, 19, 0.1);
-                        }
                     }
 
                     .form-check-inline{
@@ -107,10 +98,6 @@ body{
                         color:$dark-blue;
                         margin-left: 4px;
                     }
-                }
-                .error p{
-                    margin-top: 16px;
-                    color: $error;
                 }
 
                 p.small.waring{

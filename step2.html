@@ -5,262 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
-    <title>安達人壽 KYC</title>
+    <title>ＯＯＯＯ KYC</title>
     <link rel="shortcut icon" href="./image/favicon.ico">
     <link rel="bookmark" href="./image/favicon.ico">
     <base target="_self">
     <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/calendar.css">
-    <script src="./acelifevul/js/jquery.min.js"></script>
-    <script src="./acelifevul/js/jquery.easyui.min.js"></script>
-    <script src="./acelifevul/js/jquery-easyui/locale/easyui-lang-zh_TW.js"></script>
-    <script src="./acelifevul/premiumAuth/bootstrap/js/moment-with-locales.min.js"></script>
-    <script src="./JS/jquery.slim.min.js"></script>
-    <link rel="stylesheet" href="./acelifevul/premiumAuth/bootstrap/css/bootstrap-datetimepicker4.17.47.min.css">
-    <link rel="stylesheet" href="./acelifevul/premiumAuth/bootstrap/css/bootstrap-datetimepicker4.17.47.min.css">
-    <script src="./acelifevul/premiumAuth/bootstrap/js/bootstrap-datetimepicker4.17.47.min.js"></script>
-
-
     <style>
         input[type="date"]::-webkit-calendar-picker-indicator {
-            display: block;
-            -webkit-appearance: none;
-            background-image: url(./image/icon_calender.svg);
-            margin-bottom: 24px;
-            background: none;
-        }
+    display: block;
+    -webkit-appearance: none;
+    background-image: url(./image/icon_calender.svg);
+    margin-bottom: 24px;
+    background: none;
+}
     </style>
-    <script type="text/javascript">
-        
-
-        console.log($)
-      
-      
-      function search() {
-          
-          var id = $('#id').val();
-          var birth = $('#birth').val();
-          var j_captcha_response = $('input.j_captcha_response').val();
-      
-          if (id.length==0) {
-              $('#id').focus();
-              showResult('errorCondition');
-              return;
-          }
-          if (birth.length==0 || !dateValidation(birth)) {
-              $('#birth').focus();
-              showResult('errorCondition');
-              return;
-          }
-          if (j_captcha_response.length==0) {
-              $('input.j_captcha_response').focus();
-              showResult('errorCondition');
-              return;
-          }
-      
-          $.ajax({
-              type : 'POST',
-              url : '/acelifevul/cservice/onechubbQuery.action',
-              dataType: 'json',
-              data:{id:id,birth:birth,j_captcha_response:j_captcha_response},   
-              cache:false,
-              success : function(data) {
-                  showResult(data.resultId);
-              },
-              beforeSend: function() {
-                  $.messager.progress({
-                      title: '提示訊息',
-                      msg: '資料查詢中，請稍候！'
-                  });
-              },
-              complete: function() {
-                  $.messager.progress('close'); 
-              },
-              error: function(xhr) {
-                  alert('發生錯誤：' + xhr.responseText);
-                  $.messager.progress('close'); 
-              }
-          });
-      };
-      
-      
-      function clearForm() {
-          document.location.reload();
-      }
-      
-      
-      
-      function blurBirth() {
-          
-          var birth = $('#birth').val();
-          var tempBirth;
-          
-          var re1 = new RegExp('^([0-9]{8})$');
-          var re2 = new RegExp('^([0-9]{6})$');
-          var re3 = new RegExp('^([0-9]{7})$');
-          var re4 = new RegExp('^([0-9]{4})[.-]{1}([0-9]{1,2})[.-]{1}([0-9]{1,2})$');
-          var re5 = new RegExp('^([0-9]{4})[./]{1}([0-9]{1,2})[./]{1}([0-9]{1,2})$');
-          
-          if (re1.exec(birth)) {
-              tempBirth = birth.substring(0,4) + '/' + birth.substring(4,6) + '/' + birth.substring(6,8);
-          } else if (re2.exec(birth)) {
-              tempBirth = birth.substring(0,4) + '/' + birth.substring(4,5) + '/' + birth.substring(5,6);
-          } else if (re3.exec(birth)) {
-              var month = birth.substring(4,5);
-              var day = birth.substring(5,7);
-              if (parseInt(day) > 0 && parseInt(day) < 32) {
-                  tempBirth = birth.substring(0,4) + '/' + month + '/' + day;
-              }
-              
-              var month2 = birth.substring(4,6);
-              var day2 = birth.substring(6,7);
-              if (parseInt(month2) > 0 && parseInt(month2) < 13) {
-                  tempBirth = birth.substring(0,4) + '/' + month2 + '/' + day2;
-              }
-          } else if (re4.exec(birth)) {
-              tempBirth = birth.replaceAll('-', '/');
-          } else if (re5.exec(birth)) {
-              tempBirth = birth;
-          }
-          
-          if ((dateDataValue = re5.exec(tempBirth)) != null) {
-              var month = parseFloat(dateDataValue[2]);
-              var day = parseFloat(dateDataValue[3]);
-              
-              if (month < 10 && day < 10) {
-                  tempBirth = birth.substring(0,4) + '/0' + month + '/0' + day;
-              } else if (month < 10) {
-                  tempBirth = birth.substring(0,4) + '/0' + month + '/' + day;
-              } else if (day < 10) {
-                  tempBirth = birth.substring(0,4) + '/' + month + '/0' + day;
-              }
-              $('#birth').val(tempBirth);
-          }
-      }
-      
-      
-      function dateValidation(date) {
-          var re = new RegExp('^([0-9]{4})[./]{1}([0-9]{1,2})[./]{1}([0-9]{1,2})$');
-          var dateDataValue;
-          var infoValidation = true;
-          if ((dateDataValue = re.exec(date)) != null) {
-              let i;
-              i = parseFloat(dateDataValue[1]);
-              if (i <= 0 || i > 9999) {
-                  infoValidation = false;
-              }
-              i = parseFloat(dateDataValue[2]);
-              if (i <= 0 || i > 12) {
-                  infoValidation = false;
-              }
-              i = parseFloat(dateDataValue[3]);
-              if (i <= 0 || i > 31) {
-                  infoValidation = false;
-              }
-          } else {
-              infoValidation = false;
-          }
-          return infoValidation;
-      }
-      
-      
-      function showResult(resultId) {
-          
-          $('#result-list').parent().removeClass('d-none');
-          $('#result-list').children().addClass('d-none');
-      
-          document.getElementById(resultId).classList.remove('d-none');
-      
-      }
-      
-      
-      const weekDayArr = 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_')
-      let datetimepickerSetting = {
-          inline: true,
-          locale: 'zh-tw',
-          format: 'll',
-          useCurrent: false,
-          icons: {
-              previous: "fa fa-chevron-left",
-              next: "fa fa-chevron-right"
-          }
-      }
-      
-      function setBirth(){
-          let birthdayStr = $('#datepicker').val()
-          let birthday = ''
-          birthdayStr.split('').forEach(function(item, index){
-              if(isNaN(item)){
-                  if(index < birthdayStr.length - 1){
-                      birthday += '-'
-                  }
-              } else {
-                  birthday += item
-              }
-          })
-          birthday = new Date(birthday)
-          let val = dateFormate(birthday)
-          $('.has-calendar').parent().addClass('hasVal')
-          $('.has-calendar').parent().find('input').val(val)
-          $('#calendar').modal('hide')
-      }
-      
-      function dateFormate(date){
-          let result = ''
-          let d = date.getDate()
-          if(d < 10){
-              d = '0' + d
-          }
-          let m = date.getMonth() + 1
-          if(m < 10){
-              m = '0' + m
-          }
-          let y = date.getFullYear()
-          result = y + '/' + m + '/' + d
-          return result
-      }
-      
-      $(function(){
-          $('input[type="text"]').change(function(){
-              let inputParent = $(this).parent('.c-input-group')
-              let val = $(this).val()
-              if(inputParent.length > 0){
-                  if(val != ""){
-                      inputParent.addClass('hasVal')
-                  } else {
-                      inputParent.removeClass('hasVal')
-                  }
-              }
-          })
-          $('.has-calendar').click(function(){
-              let inputVal = $('.has-calendar').parent().find('input').val()
-              let defaultDate = new Date()
-              if(inputVal != ''){
-                  let date = new Date(inputVal)
-                  if(date != 'Invalid Date'){
-                      defaultDate = date
-                  }
-              }
-              datetimepickerSetting.defaultDate = defaultDate
-              $('#datepicker').datetimepicker('destroy');
-              $('#datepicker').datetimepicker(datetimepickerSetting)     
-              let text = $('#datepicker').val().split(',')[0]
-              $('#calendarTitle').html(text)
-              $('#calendar').modal('show')
-          })
-          moment.locale('en',{
-              weekdaysMin: 'S_M_T_W_T_F_S'.split('_'), 
-          })
-          $('#datepicker').datetimepicker(datetimepickerSetting)
-          $('#datepicker').on('dp.change',function(e){
-              let text = $('#datepicker').val()
-              $('#calendarTitle').html(text)
-          });
-      })
-      
-      </script>
 </head>
-
 <body>
     <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="https://life.chubb.com/tw-zh/" target="_blank">
@@ -280,42 +39,36 @@
                         <h3>基本資料</h3>
                         <div class="form-group">
                             <div class="form-field col-lg-6">
-                                <input type="text" name="inputId" id="inputId" class="input-text col-lg-6"
-                                    placeholder="A123456789" maxlength="10" required>
+                                <input type="text" name="inputId" id="inputId" class="input-text col-lg-6" placeholder="A1234564789" maxlength="10" required>
                                 <label for="inputId" class="label">身分證字號</label>
                             </div>
                             <div class="form-field col-lg-6">
-                                <input type="text" name="inputBirthday" id="inputBirthday"
-                                    class="input-text col-lg-6" placeholder="請輸入出生日期 yyyy/mm/dd" required
-                                    onfocus="this.showPicker()" maxlength="10">
+                                <input type="date" name="inputBirthday" id="inputBirthday"
+                                    class="input-text input-date col-lg-6" placeholder=" " required
+                                    onfocus="this.showPicker()">
                                 <label for="birthday" class="label date-label">生日</label>
-                                <span class="has-calendar"></span>
-                                <!-- <div class="date-hide-placeholder"></div> -->
+                                <div class="date-hide-placeholder"></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-field col-lg-12">
-                                <input type="text" name="inputNumber" id="inputNumber" class="input-text"
-                                    placeholder="0909123456" maxlength="10" inputmode="numeric" required>
+                                <input type="text" name="inputNumber" id="inputNumber" class="input-text" placeholder="0909123456" maxlength="10" inputmode="numeric" required>
                                 <label for="inputNumber" class="label">手機號碼</label>
                             </div>
                         </div>
                     </div>
                     <div class="btn-box">
-                        <button type="button" class="btn btn-secondary"
-                            onclick="location.href='index.html'">上一步</button>
+                        <button type="button" class="btn btn-secondary" onclick="location.href='index.html'">上一步</button>
                         <button id="submit" name="submit" type="button" class="btn btn-primary" data-toggle="modal"
                             data-target="#staticBackdrop" disabled="disabled">下一步</button>
                     </div>
                     <!-- DEMO link START -->
                     <div class="demo justify-content-center d-flex gap-4">
-                        <a class="mx-2" onclick="openModal()"
-                            data-target="#staticBackdrop-basic-info-five-error">基本資料五次錯誤示意</a>
+                        <a class="mx-2" data-toggle="modal" data-target="#staticBackdrop-basic-info-five-error">基本資料五次錯誤示意</a>
                         <a class="mx-2" onclick="location.href='step2 error.html'">輸入匡錯誤示意</a>
                     </div>
                     <!-- DEMO link END -->
-                    <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
+                    <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -324,8 +77,7 @@
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <div class="form-field col">
-                                            <input type="text" name="captcha" id="captcha" class="input-text"
-                                                placeholder=" " inputmode="numeric" required>
+                                            <input type="text" name="captcha" id="captcha" class="input-text" placeholder=" " inputmode="numeric" required>
                                             <label for="captcha" class="label">驗證碼</label>
                                         </div>
                                         <div class="captcha-img">
@@ -339,19 +91,15 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                                    <button id="submitForModal" name="submitForModal" type="button"
-                                        class="btn btn-primary" onclick="location.href='step3.html'"
-                                        disabled="disabled">確認</button>
+                                    <button id="submitForModal" name="submitForModal" type="button" class="btn btn-primary" onclick="location.href='step3.html'" disabled="disabled">確認</button>
                                 </div>
                                 <div class="demo justify-content-center d-flex gap-4">
-                                    <a class="mx-2" data-toggle="modal" data-target="#staticBackdrop-five-error"
-                                        data-dismiss="modal" data-toggle="modal">圖形五次錯誤示意</a>
+                                    <a class="mx-2" data-toggle="modal" data-target="#staticBackdrop-five-error" data-dismiss="modal" data-toggle="modal">圖形五次錯誤示意</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal fade" id="staticBackdrop-basic-info-five-error" tabindex="-1"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="staticBackdrop-basic-info-five-error" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -370,8 +118,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal fade" id="staticBackdrop-five-error" tabindex="-1"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="staticBackdrop-five-error" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -390,29 +137,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Datetimepicker Modal -->
-                    <div class="modal calendar fade" id="calendar" tabindex="-1" role="dialog" aria-labelledby="calendar" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered calendar" role="document">
-                            <div class="modal-content calendar">
-                                <div class="modal-header">
-                                    <div class="col-10">
-                                        <div class="subCalendarTitle">請選擇日期</div>
-                                        <h4 class="modal-title" id="calendarTitle"></h4>
-                                    </div>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <input type="hidden" id="datepicker">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
-                                    <button type="button" class="btn btn-primary" onclick="setBirth()">確認</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -426,99 +150,86 @@
 
 
 
-    
+    <script src="./JS/jquery.slim.min.js"></script>
     <script src="./JS/bootstrap.bundle.js"></script>
     <script>
+        $(function () {
         var inputId = $('#inputId');
         var inputBirthday = $('#inputBirthday');
         var inputNumber = $('#inputNumber');
         var button = $('#submit');
 
-        // 日期樣式
-        // inputBirthday.change(function () {
-        //     if ($(this).val()) {
-        //         $(this).siblings('.date-hide-placeholder').addClass('d-none')
-        //         $(this).siblings('.label').removeClass('date-label')
-        //     } else {
-        //         $(this).siblings('.date-hide-placeholder').removeClass('d-none')
-        //         $(this).siblings('.label').addClass('date-label')
-        //     }
+        inputId.on('input', checkInputs)
+
+        inputBirthday.change(function () {
+                if ($(this).val()) {
+                    $(this).siblings('.date-hide-placeholder').addClass('d-none')
+                    $(this).siblings('.label').removeClass('date-label')
+                } else {
+                    $(this).siblings('.date-hide-placeholder').removeClass('d-none')
+                    $(this).siblings('.label').addClass('date-label')
+                }
+                checkInputs();
+            });
+            inputNumber.on('input', checkInputs)
+        // inputNumber.input(function () {
         //     checkInputs();
         // });
 
-        // 日期欄位是否為空
-        $("#inputBirthday").on("input", function () {
-            if ($("#inputBirthday").val() === "") {
-                $("#submit").prop("disabled", true);
-            } else {
-                $("#submit").prop("disabled", false);
-            }
-        });
-
-        // 檢查input是否為空
         function checkInputs() {
+            console.log('dd')
             if (inputId.val() === '' || inputBirthday.val() === '' || inputNumber.val() === '') {
                 $("#submit").prop('disabled', true);
             } else {
                 $("#submit").prop('disabled', false);
             }
         }
-
-        // 驗證碼
-        $(document).ready(function () {
-            $("#captcha").on("input", function () {
-                if ($("#captcha").val() === "") {
+        }); 
+    
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#captcha").on("input", function() {
+                if($("#captcha").val() === "") {
                     $("#submitForModal").prop("disabled", true);
                 } else {
                     $("#submitForModal").prop("disabled", false);
                 }
             });
         });
-
+    </script>
+    <script>
         // 身分證字隱碼
         $('#inputId').on('input', function () {
-            if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);
             const value = $(this).val();
-            console.log(value)
-            if (value.length > 6) {
-                const newValue = value.slice(0, -1) + '*';
-                $(this).val(newValue);
-            } else {
+            const valueArr = [...value];
+            for (let i = 6; i < valueArr.length; i++) {
+                valueArr[i] = '*'
             }
-            checkInputs();
+            const newValue = valueArr.join('');
+            $(this).val(newValue);
         })
 
         //手機隱碼
         $('#inputNumber').on('input', function () {
-            if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);
             const value = $(this).val();
-            if (value.length >= 5 && value.length <= 8) {
-                const newValue = value.slice(0, -1) + '*';
-                $(this).val(newValue);
+            const valueArr = [...value];
+            for (let i = 4; i < valueArr.length; i++) {
+                if (i <= 7) {
+                    valueArr[i] = '*'
+                }
             }
-
-
-            checkInputs();
+            const newValue = valueArr.join('');
+            $(this).val(newValue);
         })
-
-
-        // if ($('#inputBirthday').val()) {
-        //     $('.date-hide-placeholder').addClass('d-none')
-        //     $('.date-label').removeClass('date-label')
-        // }
-
-
     </script>
     <script>
         $('#modal1').on('hidden.bs.modal', function (e) {
-            $('#modal2').modal('show');
-        })
-        function openModal() {
-            $('#staticBackdrop-basic-info-five-error').modal('show');
-        }
+  $('#modal2').modal('show');
+})
+
     </script>
 
-
+    
 </body>
-
 </html>
